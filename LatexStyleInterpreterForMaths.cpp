@@ -8,7 +8,9 @@
 #include <algorithm>
 #include <stdexcept>
 #include <utility>
-
+// Notes: There are a few cases that have not yet been adequately handled in this code (mainly where certain operations or values are undefined for example with division by zero). This code serves as a proof of concept 
+// and is a continued work in progress which will be updated incrementally with additional edge case considerations (as was done thoroughly over time with the eccpointaddition script), and further support will be added
+// for calculus (limits, differentiation and integration), and eventually complex number support and linear algebra operations (however these will take a long time to derive and implement efficiently). 
 struct Expr;
 using ExprPtr = std::shared_ptr<Expr>;
 
@@ -164,7 +166,7 @@ struct Func : Expr {
                 }
             }
         }
-        // Trigc exact vals
+        // Trig exact vals
         if (name == "sin") {
             if (isZero(a) || aTex == "\\pi") {
                 return num(0);
